@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_mapp_app/data/notifiers.dart';
 import 'package:my_mapp_app/views/pages/home_page.dart';
 import 'package:my_mapp_app/views/pages/profile_page.dart';
+import 'package:my_mapp_app/views/pages/settings_page.dart';
 import 'package:my_mapp_app/views/widgets/navbar_widget.dart';
 
 List<Widget> pages = [HomePage(), ProfilePage()];
@@ -13,7 +14,7 @@ class WidgetTree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Mapp App"),
+        title: Text("Flutter Mapp Udemy App"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -28,6 +29,19 @@ class WidgetTree extends StatelessWidget {
                     : Icon(Icons.dark_mode);
               },
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SettingsPage(title: "Settings Page");
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.settings),
           ),
         ],
       ),

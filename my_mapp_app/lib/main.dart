@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_mapp_app/data/notifiers.dart';
-import 'package:my_mapp_app/views/widget_tree.dart';
+import 'package:my_mapp_app/views/pages/welcome_page.dart';
 
 void main() {
   debugPaintSizeEnabled = false; // exibe linhas do design
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
               brightness: isDarkMode ? Brightness.dark : Brightness.light,
             ),
           ),
-          home: WidgetTree(),
+          home: WelcomePage(),
         );
       },
     );
