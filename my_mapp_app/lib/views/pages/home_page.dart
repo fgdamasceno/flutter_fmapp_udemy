@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_mapp_app/data/constants.dart';
+import 'package:my_mapp_app/views/pages/course_page.dart';
+import 'package:my_mapp_app/views/widgets/container_widget.dart';
 import 'package:my_mapp_app/views/widgets/hero_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,31 +9,36 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> titleList = [
+      KValue.basicLayout,
+      KValue.clenaUI,
+      KValue.fixBugs,
+      KValue.keyComcepts,
+      KValue.packages,
+    ];
+
+    List<String> descriptionList = [
+      KDescription.basicDescription,
+      KDescription.cleanUiDescription,
+      KDescription.fixBugsDescription,
+      KDescription.keyConceptsDescription,
+      KDescription.packagesDescription,
+    ];
+
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            HeroWidget(title: "Home Page"),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsetsGeometry.symmetric(vertical: 10.0),
-              child: Card(
-                child: Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Basic Layout", style: KTextStyle.titleTealText),
-                      Text(
-                        "This is a description for the card",
-                        style: KTextStyle.descriptionText,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            SizedBox(height: 10.0),
+            HeroWidget(title: "Home Page", nextPage: CoursePage()),
+            SizedBox(height: 5.0),
+            ...List.generate(titleList.length, (index) {
+              return ContainerWidget(
+                title: titleList[index],
+                description: descriptionList[index],
+              );
+            }),
           ],
         ),
       ),

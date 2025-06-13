@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:my_mapp_app/views/pages/getting_started_page.dart';
+import 'package:my_mapp_app/views/pages/on_boarding_page.dart';
 import 'package:my_mapp_app/views/pages/login_page.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return GettingStartedPage(title: "Register");
+                          return OnBoardingPage();
                         },
                       ),
                     );
@@ -50,7 +50,7 @@ class WelcomePage extends StatelessWidget {
                 SizedBox(height: 10.0),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
