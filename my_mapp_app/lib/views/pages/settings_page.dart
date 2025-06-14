@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_mapp_app/views/pages/expanded_flexible_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key, required this.title});
@@ -166,7 +167,19 @@ class _ProfilePageState extends State<SettingsPage> {
                 },
                 child: Text("Open Dialog"),
               ),
-              FilledButton(onPressed: () {}, child: Text("Click me too")),
+              FilledButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ExpandedFlexiblePage();
+                      },
+                    ),
+                  );
+                },
+                child: Text("Show Flexible and Expanded"),
+              ),
               TextButton(onPressed: () {}, child: Text("Click me here")),
               OutlinedButton(onPressed: () {}, child: Text("Don't forget me")),
               CloseButton(),
