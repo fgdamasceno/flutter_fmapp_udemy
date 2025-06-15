@@ -13,16 +13,23 @@ class CoursePage extends StatefulWidget {
 }
 
 class _CoursePageState extends State<CoursePage> {
+  Future<Activity>? _activityFuture;
   @override
   void initState() {
-    getData();
     super.initState();
+    _fetchRandomActivity();
   }
 
-  Future getData() async {
+  void _fetchRandomActivity() {
+    setState(() {
+      _activityFuture = getData();
+    });
+  }
+
+  Future<Activity> getData() async {
     var url = Uri.https('bored-api.appbrewery.com', '/random');
     // Await the http get response, then decode the json-formatted response.
-    var response = await http.get(url);
+    final response = await http.get(url);
     if (response.statusCode == 200) {
       return Activity.fromJson(
         jsonDecode(response.body) as Map<String, dynamic>,
@@ -37,7 +44,7 @@ class _CoursePageState extends State<CoursePage> {
     return Scaffold(
       appBar: AppBar(),
       body: FutureBuilder(
-        future: getData(),
+        future: _activityFuture,
         builder: (context, AsyncSnapshot snapshot) {
           Widget widget;
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -49,10 +56,25 @@ class _CoursePageState extends State<CoursePage> {
               padding: EdgeInsetsGeometry.symmetric(horizontal: 20.0),
               child: SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     HeroWidget(title: "Course"),
                     SizedBox(height: 20.0),
                     Text("Activity: ${activity.activity}"),
+                    Text("Availability: ${activity.availability}"),
+                    Text("Type: ${activity.type}"),
+                    Text("Participants: ${activity.participants}"),
+                    Text("Price: ${activity.price}"),
+                    Text("Accessibility: ${activity.accessibility}"),
+                    Text("Duration: ${activity.duration}"),
+                    Text("Kid Friendly: ${activity.kidFriendly}"),
+                    Text("Link: ${activity.link}"),
+                    Text("Key: ${activity.key}"),
+                    SizedBox(height: 20.0),
+                    ElevatedButton(
+                      onPressed: _fetchRandomActivity,
+                      child: Text("Fetch Another Activity"),
+                    ),
                   ],
                 ),
               ),
